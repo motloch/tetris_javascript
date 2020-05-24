@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
       nextRandom = Math.floor(Math.random()*theTetrominoes.length)
       current = theTetrominoes[random][currentRotation]
       currentPosition = 4
+      addScore()
       draw()
       displayShape()
-      addScore()
       gameOver()
     }
   }
 
-  //move the tetomino left, unless is at the edge or there is a blockage
+  //move the tetromino left, unless is at the edge or there is a blockage
   function moveLeft() {
 	if(gameState === 'running'){
 		undraw()
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
   }
 
-  //move the tetomino right, unless is at the edge or there is a blockage
+  //move the tetromino right, unless is at the edge or there is a blockage
   function moveRight() {
 	if(gameState === 'running') {
 		undraw()
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //rotate the tetromino
   function rotate() {
-	if(scoreDisplay.innerHTML != 'end'){
+	if(gameState === 'running'){
 		undraw()
 		currentRotation++
 		if(currentRotation === current.length) { //if the currentRotation goes to 4, make it got back to 0
@@ -224,7 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       currentPosition = 4
       currentRotation = 0
+	  //randomly select a tetromino and its first rotation
+	  nextRandom = Math.floor(Math.random()*theTetrominoes.length)
+	  random = Math.floor(Math.random()*theTetrominoes.length)
+	  current = theTetrominoes[random][currentRotation]
 
+	  gameState = 'over'
   })
 
   //add score
@@ -240,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			timerId = setInterval(moveDown, speed)
 		}
 
+		//make sure you remove the current piece before shifting things around
         row.forEach(index => {
           squares[index].classList.remove('taken')
           squares[index].classList.remove('tetromino')
@@ -256,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     if(current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
 	  gameState = 'over'
-      scoreDisplay.innerHTML = 'end'
+      scoreDisplay.innerHTML = score + ' (end)'
       clearInterval(timerId)
     }
   }
