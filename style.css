@@ -7,7 +7,7 @@
   height: 400px;
   display: flex;
   flex-wrap: wrap;
-  background-color: yellow;
+  border-style: solid;
 }
 
 .grid div {
@@ -25,7 +25,7 @@
   height: 80px;
   display: flex;
   flex-wrap: wrap;
-  background-color: yellow;
+  border-style: solid;
 }
 
 .mini-grid div {
