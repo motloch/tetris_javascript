@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//increase difficulty
 		if(score % speedChangeScore === 0) {
 			speed = Math.floor(initialSpeed*speedChangeScore/score)
+			clearInterval(timerId)
 			timerId = setInterval(moveDown, speed)
 		}
 

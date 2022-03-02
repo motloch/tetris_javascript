@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  justify-content: center;
 }
 
 .grid {
@@ -31,4 +32,20 @@
 .mini-grid div {
   width: 20px;
   height: 20px;
+}
+
+body{
+  margin:20px auto;
+  padding:20px 20px 20px 20px;
+  border:2px solid #bbb;
+  border-radius:10px;
+  font-family:Verdana,Helvetica,sans-serif;
+  color:#242424;
+  line-height:1.4;
+  font-size:16px;
+  max-width:370px
+}
+
+#start-button {
+  margin: 20px auto;
 }
